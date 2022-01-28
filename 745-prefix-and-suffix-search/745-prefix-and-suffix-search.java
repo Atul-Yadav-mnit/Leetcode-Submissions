@@ -44,10 +44,10 @@ class WordFilter {
     
     public ArrayList<Integer> pfun(Trie head, String p)
     {
-         if(hp.containsKey(p))
-        {
-            return hp.get(p);
-        }
+        //  if(hp.containsKey(p))
+        // {
+        //     return hp.get(p);
+        // }
         Trie temp = head;
         for(int i=0;i<p.length();i++)
         {
@@ -65,10 +65,10 @@ class WordFilter {
     
     public ArrayList<Integer> sfun(Trie head, String p)
     {
-        if(hs.containsKey(p))
-        {
-            return hs.get(p);
-        }
+        // if(hs.containsKey(p))
+        // {
+        //     return hs.get(p);
+        // }
         Trie temp = head;
         for(int i=p.length()-1;i>=0;i--)
         {
