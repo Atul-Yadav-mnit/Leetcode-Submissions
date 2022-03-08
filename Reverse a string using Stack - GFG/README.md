@@ -1,5 +1,5 @@
 # Reverse a string using Stack
-## Easy 
+##  Easy 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">You are given a string <strong>S</strong>, the task is to reverse the string using stack.</span></p>
 
