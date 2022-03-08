@@ -21,10 +21,15 @@ class Solution {
     
     public String reverse(String S){
         //code here
+        Stack<Character> s = new Stack<Character>();
         StringBuilder ans = new StringBuilder();
-        for(int i=S.length()-1;i>=0;i--)
+        for(int i=0;i<S.length();i++)
         {
-            ans.append(S.charAt(i));
+            s.push(S.charAt(i));
+        }
+        while(!s.isEmpty())
+        {
+            ans.append(s.pop());
         }
         return ans.toString();
     }
