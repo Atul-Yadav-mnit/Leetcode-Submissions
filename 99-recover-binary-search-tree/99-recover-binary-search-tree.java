@@ -33,7 +33,7 @@ class Solution {
         fun(root.left,root);
         if(a!=null)
         {
-            System.out.println(root.val+" "+a.prev.val);
+            //System.out.println(root.val+" "+a.prev.val);
             if(a.prev.val > root.val)
             {
                 if(c1 == null)
