@@ -65,7 +65,7 @@ class Solution {
     }
     public TreeNode subtreeWithAllDeepest(TreeNode root) {
         fun(root,0);
-        System.out.println(arr);
+       // System.out.println(arr);
         fun2(root);
         return ans2;
     }
