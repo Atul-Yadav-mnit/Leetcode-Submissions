@@ -52,7 +52,7 @@ class Solution {
                 x--;
             }
             x+=Math.max(0,hi-li+1);
-           System.out.println(li+" "+hi+" "+x);
+         //  System.out.println(li+" "+hi+" "+x);
             c+=x;
         }
         return c;
