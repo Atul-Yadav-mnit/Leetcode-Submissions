@@ -32,6 +32,82 @@ class Solution
     int sum(int a , int b)
     {
         //code here
-        return a+b;
+        int arr[] = new int[31];
+        int xx = 1;
+        for(int i=0;i<31;i++)
+        {
+            arr[i] = xx;
+            xx = xx<<1;
+        }
+        int carry = 0;
+        int ans = 0;
+        int t = 1;
+        for(int i=0;i<31;i++)
+        {
+            int x = a&arr[i];
+            int y = b&arr[i];
+            if(carry == 0)
+            {
+                if(x == 0)
+                {
+                    if(y == 0)
+                    {
+                        carry = 0;
+                    }
+                    else
+                    {
+                        carry = 0;
+                        ans = ans | t;
+                    }
+                }
+                else
+                {
+                    if(y == 0)
+                    {
+                        carry = 0;
+                        ans = ans | t;
+                    }
+                    else
+                    {
+                        carry = 1;
+                    }
+                }
+            }
+            else
+            {
+                if(x == 0)
+                {
+                    if(y == 0)
+                    {
+                        carry = 0;
+                        ans = ans | t;
+                    }
+                    else
+                    {
+                        carry = 1;
+                    }
+                }
+                else
+                {
+                    if(y == 0)
+                    {
+                        carry = 1;
+                    }
+                    else
+                    {
+                        carry = 1;
+                        ans = ans | t;
+                    }
+                }
+            }
+            
+            t = t<<1;
+        }
+        if(carry == 1)
+        {
+            ans = ans | t;
+        }
+        return ans;
+        
     }
 }
