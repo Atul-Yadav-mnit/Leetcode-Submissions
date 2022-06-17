@@ -14,52 +14,62 @@
  * }
  */
 class Solution {
-      public  HashMap<String,Integer> h;
-    public  int fun(TreeNode root, boolean doesparneed, boolean doesparhave)
+    HashMap<String,Integer> h;
+    public int fun(TreeNode root, int ispar, int isme)
     {
         if(root == null)
         {
             return 0;
         }
-        String key = String.valueOf(root)+"_"+String.valueOf(doesparneed)+"_"+String.valueOf(doesparhave);
-        int ans = 0;
-        
+        String key = String.valueOf(root)+" "+ispar+" "+isme;
         if(h.containsKey(key))
         {
-       //     System.out.println("here");
             return h.get(key);
         }
-        else if(doesparneed)
+        int ans = 0;
+        if(ispar == 1)
         {
-            ans  = 1+fun(root.left,false,true)+fun(root.right,false,true);
-        }
-        else if(doesparhave)
-        {
-            int c1 = fun(root.left,false,false)+fun(root.right,false,false);
-            int c2 = 1+fun(root.left,false,true)+fun(root.right,false,true);
-            ans = Math.min(c1,c2);
+            if(isme == 1)
+            {
+                int a  = fun(root.left,1,0)+fun(root.right,1,0);
+                int b  = 1 + fun(root.left,1,1)+fun(root.right,1,1);
+                ans = Math.min(a,b);
+            }
+            else
+            {
+                int a  = 0;
+                if(root.left == null && root.right == null)
+                {
+                    a = 1;
+                }
+                else if(root.left == null)
+                {
+                    a = fun(root.right,0,0);
+                }
+                else if(root.right == null)
+                {
+                    a = fun(root.left,0,0);
+                }
+                else
+                {
+                    int x = fun(root.right,1,0) + fun(root.left,0,0);
+                    int y = fun(root.right,0,0) + fun(root.left,1,0);
+                    a = Math.min(x,y);
+                }
+                int b  = 1 + fun(root.left,1,1)+fun(root.right,1,1);
+                ans = Math.min(a,b);
+            }
         }
         else
         {
-            int c1 = fun(root.left,true,false)+fun(root.right,false,false);
-            int c2 = fun(root.left,false,false)+fun(root.right,true,false);
-            int c3 = 1+fun(root.left,false,true)+fun(root.right,false,true);
-            if(root.left == null)
-            {
-               c1 = Integer.MAX_VALUE;
-            }
-            if(root.right == null)
-            {
-               c2 = Integer.MAX_VALUE;
-            }
-            
-            ans = Math.min(c1,Math.min(c2,c3));
+            int a  = 1 + fun(root.left,1,1)+fun(root.right,1,1);
+            ans = a;
         }
         h.put(key,ans);
         return ans;
     }
     public int minCameraCover(TreeNode root) {
         h = new HashMap<String,Integer>();
-        return fun(root,false,false);
+        return fun(root,1,0);
     }
 }
