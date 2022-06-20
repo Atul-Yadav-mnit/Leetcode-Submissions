@@ -2,20 +2,20 @@ class Solution {
     public int minimumLengthEncoding(String[] words) {
         Arrays.sort(words,(w1,w2) -> w2.length()-w1.length());
         int ans = 0;
+        HashSet<String> h = new HashSet<String>();
         for(int i=0;i<words.length;i++)
         {
             String s = words[i];
-            int needed = s.length()+1;
-            for(int j=0;j<i;j++)
+            if(h.contains(s))
             {
-                String x = words[j].substring(words[j].length()-s.length(),words[j].length());
-                if(x.equals(s))
-                {
-                    needed = 0;
-                    break;
-                }
+                continue;
             }
-            ans+=needed;
+            ans+=s.length()+1;
+            for(int j=0;j<words[i].length();j++)
+            {
+                String m = words[i].substring(j,words[i].length());
+                h.add(m);
+            }
         }
         return ans;
     }
